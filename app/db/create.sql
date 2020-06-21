@@ -1,0 +1,2 @@
+CREATE DATABASE koko_dev;
+CREATE DATABASE koko_test;
