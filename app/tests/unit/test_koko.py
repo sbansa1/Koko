@@ -8,6 +8,9 @@ def test_calculating_days(monkeypatch):
         return [lambda x: datetime.now() - datetime.timedelta(days=7)]
     monkeypatch.setattr(koko_utils,"calculating_days",mock_calculating_days)
 
-    @abstractmethod
-    def calc_rent(duration,number_of_books):
-        """Calc Rent takes two arguments duration and number of books"""
+
+def test_calculate_total_rent(monkeypatch):
+
+    def mock_calculate_total_rent():
+        return [lambda c: 10 * (2 * 4.5)]
+    monkeypatch.setattr(koko_utils,"calculate_total_rent",mock_calculate_total_rent)

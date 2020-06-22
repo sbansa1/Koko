@@ -3,6 +3,7 @@ image: docker:stable
 stages:
   - build
   - test
+  - deploy
 
 
 variables:
@@ -43,3 +44,21 @@ test:koko:
     - python -m flake8 app
     - python -m black app --check
 
+deploy:koko:
+  stage: deploy
+  services:
+    - docker:dind
+  variables:
+    DOCKER_DRIVER: "overlay2"
+    HEROKU_APP_NAME : ""
+    HEROKU_CONTAINER_REGISTRY: registry.heroku.com/${HEROKU_APP_NAME}/web
+  script:
+    - apk add --no cache curl
+    - chmod +x ./release.sh
+    - docker build
+        --tag $HEROKU_REGISTRY_NAME
+        --file ./Dockerfile.prod
+        "."
+    - docker login -u _ -p $HEROKU_AUTH_TOKEN registry.heroku.com
+    - docker push $HEROKU_REGISTRY_NAME
+    - ./release.sh

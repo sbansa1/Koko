@@ -13,3 +13,17 @@ I wrote unit tests for the configuration and a test for the endpoint to make sur
 
 I declared a method which is calc test and it returns nothing
 ```
+
+### Story 2 
+```text
+In the story 2 I declared BookType as an enum along with its respected book price and seeded the database.
+```
+### Story 3
+```text
+I basically wrote the logic for the calculator. And created the Dockerfile and deployed it on Heroku.
+```
+
+If I was to scale the app I will use celery for the asynchronous task and let the calculations happen. 
+Secondly, I would not have one database for all the services and probably would have focused more on microservices architecture
+and use rabbit mq or any other event queue to exchange events. 
+Also, 

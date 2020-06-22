@@ -2,7 +2,7 @@
 
 echo "Starting postgres..."
 
-while ! nc -z db_name port; do
+while ! nc -z koko-db 5432; do
   sleep 0.1
 done
 
